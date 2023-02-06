@@ -1,0 +1,6 @@
+data/**
+figures/**
+instrData/**
+xed.cpython-310-x86_64-linux-gnu.so
+.idea/
+__pycache__/
