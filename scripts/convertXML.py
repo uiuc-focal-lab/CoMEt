@@ -135,7 +135,7 @@ def main():
                curPerfDataForArch.append(perfData)
             instrData['perfData'] = curPerfDataForArchIdxDict[perfRepr]
 
-   path = '../instrData'
+   path = 'instrData'
 
    try:
       os.makedirs(path)

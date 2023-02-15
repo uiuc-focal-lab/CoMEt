@@ -32,12 +32,13 @@ CoMEt explanations can also be generated at the token-level as well, i.e. CoMEt 
 The following requirements must be fulfilled for setting up CoMEt. 
 - Ubuntu OS (the experiments in the paper were conducted on Ubuntu v22.04, so it is recommended to work with a recent distribution of Ubuntu)
 - `sudo` access on the machine on which experiments are conducted
-- `python, pip, miniconda` must be installed on the machine
+- `python, pip, miniconda, cmake` must be installed on the machine
 
 Once the above requirements are satisfied, CoMEt can be setup by running the following commands from the project's root directory. 
 
 ```
 ./scripts/setupcomet.sh
+eval "$(conda shell.bash hook)"
 conda activate comet
 ```
 
