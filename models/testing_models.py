@@ -3,7 +3,7 @@ import time
 import multiprocessing as mp
 import tempfile
 import sys
-sys.path.append('models/Ithemal_gpu/')
+sys.path.append('models/Ithemal/')
 sys.path.append('models/')
 from ithemal_remake import *
 from uiCA import *
