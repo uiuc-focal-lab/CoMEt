@@ -14,19 +14,13 @@ sudo curl -sL https://github.com/DynamoRIO/dynamorio/releases/download/release_7
 # set up conda environment
 # create conda environment
 # ITHEMAL_HOME, DYNAMORIO_HOME are in the env file
-conda env create -f docker/environment.yml
+conda env create -f scripts/environment.yml
 # activate the conda environment
-#source ~/miniconda3/etc/profile.d/conda.sh
-#source ~/miniconda3/bin/activate comet
-#/bin/echo 'export PATH=/opt/conda/bin:$PATH' >> ~/.bash_profile && \
-#        /bin/echo 'source activate ithemal' >> ~/.bash_profile
 eval "$(conda shell.bash hook)"
 conda activate comet
 
 ./scripts/setup.sh
 
-#./models/Ithemal/data_collection/build_dynamorio.sh
-
-#source ~/miniconda3/bin/activate comet
+./models/Ithemal/data_collection/build_dynamorio.sh
 
 echo All set to run CoMEt! Have fun!

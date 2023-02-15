@@ -46,7 +46,7 @@ This is a one-time installation procedure. When re-running CoMEt after installat
 ## Creating CoMEt's explanations for one basic block
 To explain one input x86 assembly basic block using CoMEt, one needs to run the following command. 
 
-```python3 explainOneBasicBlock.py <your code> <cost model> <precision threshold (optional)> <probability (optional)>```
+```python3 explainOneBasicBlock.py <your code> <cost model> <threshold (optional)> <probability (optional)>```
 
 An example invocation of CoMEt on one basic block is shown below. 
 
@@ -54,7 +54,7 @@ An example invocation of CoMEt on one basic block is shown below.
 python3 explainOneBasicBlock.py 'push rax; mov dword ptr [rbx], eax; add rax, rbx; cmp rbx, rdx' ithemal 
 ```
 
-The currently supported cost models in CoMEt are Ithemal and uiCA. If one wants to add another cost model to create CoMEt explanations for, then please follow the details in [the section on adding a new cost model](##adding-a-new-cost-model). 
+The currently supported cost models in CoMEt are Ithemal (cost model name for command: _ithemal_) and uiCA (cost model name for command: _uica_). If one wants to add another cost model to create CoMEt explanations for, then please follow the details in [the section on adding a new cost model](##adding-a-new-cost-model). 
 The default cost model for which CoMEt generates explanations is _Ithemal_. 
 
 Optional arguments to above command:

@@ -1,7 +1,7 @@
 import time
 
 import pandas as pd
-
+import numpy as np
 from basic_block import *
 import multiprocessing as mp
 import sys
@@ -12,84 +12,8 @@ def exp_normalize(x):
     b = x.max()
     y = np.exp(x - b)
     return y / y.sum()
-class TextGenerator(object):
-    def __init__(self, url=None):
-        from transformers import DistilBertTokenizer, DistilBertForMaskedLM
-        import torch
-        self.torch = torch
-        self.url = url
-        if url is None:
-            self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-            self.bert_tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-cased')
-            self.bert = DistilBertForMaskedLM.from_pretrained('distilbert-base-cased')
-            self.bert.to(self.device)
-            self.bert.eval()
-
-    def unmask(self, text_with_mask):
-        torch = self.torch
-        tokenizer = self.bert_tokenizer
-        model = self.bert
-        encoded = np.array(tokenizer.encode(text_with_mask, add_special_tokens=True))
-        input_ids = torch.tensor(encoded)
-        masked = (input_ids == self.bert_tokenizer.mask_token_id).numpy().nonzero()[0]
-        to_pred = torch.tensor([encoded], device=self.device)
-        with torch.no_grad():
-            outputs = model(to_pred)[0]
-        ret = []
-        for i in masked:
-            v, top_preds = torch.topk(outputs[0, i], 500)
-            words = tokenizer.convert_ids_to_tokens(top_preds)
-            v = np.array([float(x) for x in v])
-            ret.append((words, v))
-        return ret
-
-class SentencePerturber:
-    def __init__(self, words, tg, onepass=False):
-        self.tg = tg
-        self.words = words
-        self.cache = {}
-        self.mask = self.tg.bert_tokenizer.mask_token
-        self.array = np.array(words, '|U80')
-        self.onepass = onepass
-        self.pr = np.zeros(len(self.words))
-        for i in range(len(words)):
-            a = self.array.copy()
-            a[i] = self.mask
-            s = ' '.join(a)
-            w, p = self.probs(s)[0]
-            self.pr[i] =  min(0.5, dict(zip(w, p)).get(words[i], 0.01))
-    def sample(self, data):
-        a = self.array.copy()
-        masks = np.where(data == 0)[0]
-        a[data != 1] = self.mask
-        if self.onepass:
-            s = ' '.join(a)
-            rs = self.probs(s)
-            reps = [np.random.choice(a, p=p) for a, p in rs]
-            a[masks] = reps
-        else:
-            for i in masks:
-                s = ' '.join(a)
-                words, probs = self.probs(s)[0]
-                a[i] = np.random.choice(words, p=probs)
-        return a
-
-    def probs(self, s):
-        if s not in self.cache:
-            r = self.tg.unmask(s)
-            self.cache[s] = [(a, exp_normalize(b)) for a, b in r]
-            if not self.onepass:
-                self.cache[s] = self.cache[s][:1]
-        return self.cache[s]
-
-
-    def perturb_sentence(present, n, prob_change=0.5):
-        raw = np.zeros((n, len(self.words)), '|U80')
-        data = np.ones((n, len(self.words)))
-
 
 def get_sample_fn(code, classifier_fn, predicate_type, prob, onepass=False, use_proba=False, use_stoke=False):
-    # true_label = classifier_fn([code])[0]
     true_label = 1  # always within the eps ball
     bb = BasicBlock(code, predicate_type, classifier_fn)
     center = bb.get_original_pred()
