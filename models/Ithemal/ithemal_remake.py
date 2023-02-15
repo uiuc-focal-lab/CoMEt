@@ -162,4 +162,4 @@ class Ithemal(nn.Module):
 #     main()
 
 
-Ithemal_gpu_model = Ithemal('/home/isha/Documents/cost_model_exp/code_predicates/models/Ithemal_gpu/ithemal_trained_against_uica')
+Ithemal_gpu_model = Ithemal('models/Ithemal/ithemal_trained_against_uica')
