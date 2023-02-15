@@ -95,15 +95,3 @@ and only_same_prediction at the same time')
         if idx < 0 or idx > size:
             return []
         return self.exp_map['examples'][idx][key]
-
-    def as_html(self, **kwargs):
-        return self.as_html_fn(self.exp_map, **kwargs)
-
-    def show_in_notebook(self, **kwargs):
-        from IPython.core.display import display, HTML
-        out = self.as_html(**kwargs)
-        display(HTML(out))
-
-    def save_to_file(self, file_path, **kwargs):
-        out = self.as_html(**kwargs)
-        io.open(file_path, 'w').write(out)
