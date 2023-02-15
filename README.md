@@ -3,7 +3,7 @@
 ![Overview of CoMEt](figures/blockdiagram.png)
 
 
-CoMEt is a framework for explaining predictions of throughput given by x86 assembly cost models. CoMEt can be used to identify the instructions of the input basic block which are important for the throughput prediction made by the cost model being explained. CoMEt is compatible with any x86 assembly input basic block and is optimized to explain throughput predictions. In this implementation, we provide functionalities to explain the cost models Ithemal (https://github.com/ithemal/Ithemal) and uiCA (https://github.com/andreas-abel/uiCA) with CoMEt. Note that CoMEt is compatible with other cost models as well, with minor adjustments. 
+CoMEt is a framework for explaining performance predictions given by x86 assembly cost models. CoMEt can be used to identify the instructions of the input basic block which are important for the throughput prediction made by the cost model being explained. CoMEt is compatible with any x86 assembly input basic block and is optimized to explain throughput predictions. In this implementation, we provide functionalities to explain the cost models Ithemal (https://github.com/ithemal/Ithemal) and uiCA (https://github.com/andreas-abel/uiCA) with CoMEt. Note that CoMEt is compatible with other cost models as well, with minor adjustments. 
 CoMEt explanations can also be generated at the token-level as well, i.e. CoMEt will identify the tokens (opcodes and operands) in the input basic block which are important for the throughput prediction. 
 
 ## Setup instructions
@@ -43,7 +43,7 @@ conda activate comet
 
 This is a one-time installation procedure. When re-running CoMEt after installation, one should just activate the environment of the project by `conda activate comet` before running any experiments. 
 
-## Creating CoMEt's explanations for one basic block. 
+## Creating CoMEt's explanations for one basic block
 To explain one input x86 assembly basic block using CoMEt, one needs to run the following command. 
 
 ```python3 explainOneBasicBlock.py <your code> <cost model>```
