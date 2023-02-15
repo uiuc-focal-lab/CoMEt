@@ -1,6 +1,6 @@
 # CoMEt: Cost-Model-Explanations
 
-![Overview of CoMEt](figures/blockdiagram.png)
+[Overview of CoMEt](figures/blockdiagram.png)
 
 
 CoMEt is a framework for explaining performance predictions given by x86 assembly cost models. CoMEt can be used to identify the instructions of the input basic block which are important for the throughput prediction made by the cost model being explained. CoMEt is compatible with any x86 assembly input basic block and is optimized to explain throughput predictions. In this implementation, we provide functionalities to explain the cost models Ithemal (https://github.com/ithemal/Ithemal) and uiCA (https://github.com/andreas-abel/uiCA) with CoMEt. Note that CoMEt is compatible with other cost models as well, with minor adjustments. 
@@ -46,7 +46,7 @@ This is a one-time installation procedure. When re-running CoMEt after installat
 ## Creating CoMEt's explanations for one basic block
 To explain one input x86 assembly basic block using CoMEt, one needs to run the following command. 
 
-```python3 explainOneBasicBlock.py <your code> <cost model>```
+```python3 explainOneBasicBlock.py <your code> <cost model> <precision threshold (optional)> <probability (optional)>```
 
 An example invocation of CoMEt on one basic block is shown below. 
 
@@ -59,7 +59,7 @@ The default cost model for which CoMEt generates explanations is _Ithemal_.
 
 Optional arguments to above command:
 - `-token`: to explain the throughput predictions of the cost model at the token-level of the input basic block.
-- `threshold <x>`: to specify custom precision threshold $$(1-\delta)$$ for the Anchors' algorithm (default = 0.82)
+- `threshold <x>`: to specify custom precision threshold $(1-\delta)$ for the Anchors' algorithm (default = 0.82)
 - `probability <p>`: to specify custom probability parameter for the probability mass function in the perturbation model (default = 0.5)
 
 ## Reproducing the experiments in the paper.
