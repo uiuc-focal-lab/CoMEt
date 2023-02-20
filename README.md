@@ -1,6 +1,6 @@
 # CoMEt: Cost-Model-Explanations
 
-![Overview of CoMEt's workflow](figures/blockdiagram.png)
+![Overview of CoMEt's workflow](figures/image.png)
 
 
 CoMEt is a framework for explaining performance predictions given by x86 assembly cost models. CoMEt can be used to identify the instructions of the input basic block which are important for the throughput prediction made by the cost model being explained. CoMEt is compatible with any x86 assembly input basic block and is optimized to explain throughput predictions. In this implementation, we provide functionalities to explain the cost models Ithemal (https://github.com/ithemal/Ithemal) and uiCA (https://github.com/andreas-abel/uiCA) with CoMEt. Note that CoMEt is compatible with other cost models as well, with minor adjustments. 
