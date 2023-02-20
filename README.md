@@ -31,7 +31,7 @@ For more details on CoMEt's algorithms, please check out our [paper](https://arx
 [//]: # (### Setup without Docker)
 
 [//]: # (If one chooses the setup option without Docker, then one must ensure the following requirements.)
-The following requirements must be fulfilled for setting up CoMEt. 
+The following minimal requirements exist for setting up CoMEt. 
 - Ubuntu OS (the experiments in the paper were conducted on Ubuntu v22.04, so it is recommended to work with a recent distribution of Ubuntu)
 - `sudo` access on the machine on which experiments are conducted
 - `python, pip, miniconda, cmake` must be installed on the machine
