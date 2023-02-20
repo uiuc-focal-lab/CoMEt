@@ -69,3 +69,9 @@ Optional arguments to above command:
 
 
 ## Adding a new cost model
+
+## How to cite?
+Thank you for your interest in CoMEt. If you use this work in your own research, please cite our paper. Thanks!
+```
+Chaudhary, Isha & Renda, Alex & Mendis, Charith & Singh, Gagandeep. (2023). CoMEt: x86 Cost Model Explanation Framework. 10.48550/arXiv.2302.06836. 
+```
