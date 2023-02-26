@@ -28,10 +28,10 @@ def main():
     # preprocess code to send to explain
     code = preprocess_my_code(code_text)
 
-    if args.testing_model == 'ithemal':
+    if args.cost_model == 'ithemal':
         my_model = testing_ithemal_gpu
         print("Testing Ithemal")
-    elif args.testing_model == 'uica':
+    elif args.cost_model == 'uica':
         my_model = testing_uica
         print("Testing uiCA")
     else:
@@ -39,7 +39,7 @@ def main():
 
     explainer = anchor_code.AnchorCode()
     performance_prediction = my_model(code)
-    print('Throughput Prediction for input basic block made by model {}: {}'.format(args.testing_model, performance_prediction))
+    print('Throughput Prediction for input basic block made by model {}: {}'.format(args.cost_model, performance_prediction))
 
     exp = explainer.explain_instance(code, my_model, predicate_type, threshold=args.precision_threshold, perturbation_probability=args.perturbation_probability)
     print('='*100)
