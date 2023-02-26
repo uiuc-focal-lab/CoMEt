@@ -3,3 +3,4 @@ instrData/**
 **/.idea/
 **/__pycache__/
 *.so
+models/Ithemal/data_collection/build/

@@ -1,20 +1,27 @@
 import tempfile
 import subprocess
 import binascii
+import sys
+sys.path.append('utils/')
+from my_get_hex import *
 
 def preprocess_my_code(code):
     # bring to intel syntax by compiling and then disassembling
-    _, my_code_file = tempfile.mkstemp()
-    _, my_bin_file = tempfile.mkstemp()
-    with open(my_code_file, 'w') as fp:
-        fp.write(code)
-    # this will create binary of the code in any format
-    subprocess.run(['as', my_code_file, '-o', my_bin_file])
-    # now the code in binary needs to be converted to its hex for the disassembler
-    with open(my_bin_file, 'r') as fp:
-        block_binary = fp.read()
-    block_hex = binascii.b2a_hex(block_binary)
+    # _, my_code_file = tempfile.mkstemp()
+    # _, my_bin_file = tempfile.mkstemp()
+    # with open(my_code_file, 'w') as fp:
+    #     fp.write(code)
+    # # this will create binary of the code in any format
+    # subprocess.run(['as', my_code_file, '-o', my_bin_file])
+    # # now the code in binary needs to be converted to its hex for the disassembler
+    # with open(my_bin_file, 'r') as fp:
+    #     block_binary = fp.read()
+    # block_hex = binascii.b2a_hex(block_binary)
 
+    try:
+        block_hex = get_hex_of_code(code)
+    except:
+        block_hex = get_hex_of_code_att(code)
     # disassemble the block_hex using disasm.py
     asm_code = subprocess.check_output(['python3', 'disasm.py', block_hex, '--output-intel-syntax'], universal_newlines=True)
 
