@@ -32,10 +32,10 @@ def main():
 
     if args.cost_model == 'ithemal':
         my_model = testing_ithemal_gpu
-        print("Testing Ithemal")
+        print("Testing cost model Ithemal")
     elif args.cost_model == 'uica':
         my_model = testing_uica
-        print("Testing uiCA")
+        print("Testing cost model uiCA")
     else:
         raise("model type not recognized!")
 
