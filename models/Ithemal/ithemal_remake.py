@@ -3,11 +3,12 @@ import torch.nn as nn
 import subprocess
 import xml.etree.ElementTree as ET
 import itertools
+import os
 import sys
 sys.path.append('./models/Ithemal_gpu')
 from get_hex_gpu import get_hex_of_code
 import token2hotidx
-_TOKENIZER = '/home/isha/Documents/cost_model_exp/code_predicates/models/Ithemal_gpu/data_collection/build/bin/tokenizer'  # this is where the tokenizer lives
+_TOKENIZER = os.path.join(os.getenv('COMET_HOME'), 'models/Ithemal/data_collection/build/bin/tokenizer')  # this is where the tokenizer lives
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # here is a complete description of the lifecycle of a basic block within Ithemal:

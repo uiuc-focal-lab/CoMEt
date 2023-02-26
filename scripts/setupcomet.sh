@@ -34,7 +34,7 @@ fi
 ./models/Ithemal/data_collection/build_dynamorio.sh
 
 echo Installing LLVM if not already present
-sudo apt install llvm
+#sudo apt install llvm
 # code from Ithemal's official repo
 #cd utils/
 #if [ ! -d "llvm" ]; then
@@ -59,3 +59,5 @@ sudo apt install llvm
 #fi
 
 #cd $cur
+
+
