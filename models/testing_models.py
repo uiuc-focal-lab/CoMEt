@@ -14,11 +14,9 @@ from uiCA import *
 # HERE'S WHERE YOU ADD YOUR OWN COST MODEL!!
 # FOLLOW THE TEMPLATE FUNCTION BELOW TO INTRODUCE YOUR COOL COST MODEL :)
 # The cost models functions implemented below are there to guide your implementation!
-
 def testing_my_cost_model(inputs, center = -1, n = 0):
     if isinstance(inputs, str):
         inputs = [inputs]
-
     pool = mp.Pool(mp.cpu_count()-1) # if you want CPU multiprocessing!
     results = pool.starmap_async(YOUR_COST_MODEL_FUNCTION_NAME, [(center, inputs, k) for k in range(len(inputs))]).get() # TODO
     pool.close()
