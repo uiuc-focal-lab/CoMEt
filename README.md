@@ -56,8 +56,34 @@ To explain one input x86 assembly basic block using CoMEt, one needs to run the 
 An example invocation of CoMEt on one basic block is shown below. 
 
 ```
-python3 explainOneBasicBlock.py 'push rax; mov dword ptr [rbx], eax; add rax, rbx; cmp rbx, rdx' ithemal
+python3 explainOneBasicBlock.py 'push rax; mov dword ptr [rbx], eax; add rax, rbx; cmp rbx, rdx' ithemal -threshold 0.82 -probability 0.5
 ```
+
+For the above command, the expected output is given below. 
+```
+The basic block being explained is:
+push rax
+mov dword ptr [rbx], eax
+add rax, rbx
+cmp rbx, rdx
+
+Testing cost model Ithemal
+
+Throughput Prediction for input basic block made by model ithemal: 2.0355498790740967
+All predicates to explain with are characterized by instruction:  ['inst_0', 'inst_1', 'inst_2', 'inst_3']
+
+Creating CoMEt's explanations for the input basic block...
+
+Total time taken for creating explanations with instruction predicate: 93.90899753570557
+
+====================================================================================================
+Predicate type:  instruction
+CoMEt's explanation consists of predicates corresponding to: inst_0 AND inst_1
+Precision: 0.99
+Coverage: 0.08
+====================================================================================================
+```
+In the above output, the `inst_<i>` means the instruction indexed by `i`, with 0-indexing. 
 
 The currently supported cost models in CoMEt are Ithemal (cost model name for command: _ithemal_) and uiCA (cost model name for command: _uica_). If one wants to add another cost model to create CoMEt explanations for, then please follow the details in [the section on adding a new cost model](##adding-a-new-cost-model). 
 The default cost model for which CoMEt generates explanations is _Ithemal_. 
