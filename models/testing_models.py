@@ -18,7 +18,7 @@ def testing_my_cost_model(inputs, center = -1, n = 0):
     if isinstance(inputs, str):
         inputs = [inputs]
     pool = mp.Pool(mp.cpu_count()-1) # if you want CPU multiprocessing!
-    results = pool.starmap_async(YOUR_COST_MODEL_FUNCTION_NAME, [(center, inputs, k) for k in range(len(inputs))]).get() # TODO
+    results = pool.starmap_async(YOUR_COST_MODEL_FUNCTION_NAME, [(center, inputs, k) for k in range(len(inputs))]).get() # TODO: have function YOUR_COST_MODEL_FUNCTION_NAME which takes a floating point number 'center' for binary classification using the regression output of the cost model, takes a list of inputs and predicts cost for the 'k'th element of the list 'inputs'
     pool.close()
     pool.join()
     labels = []
