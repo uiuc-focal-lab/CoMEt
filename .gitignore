@@ -4,3 +4,4 @@ instrData/**
 **/__pycache__/
 *.so
 models/Ithemal/data_collection/build/
+**/*.swp
