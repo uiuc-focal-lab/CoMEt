@@ -35,7 +35,7 @@ The following minimal requirements exist for setting up CoMEt.
 - Ubuntu OS (the experiments in the paper were conducted on Ubuntu v22.04, so it is recommended to work with a recent distribution of Ubuntu)
 - `sudo` access on the machine on which experiments are conducted
 - `python, pip, miniconda, cmake` must be installed on the machine
-- `LLVM` must be installed on the machine. Please check the installation instructions at [https://llvm.org/docs/GettingStarted.html#getting-the-source-code-and-building-llvm](https://llvm.org/docs/GettingStarted.html#getting-the-source-code-and-building-llvm)
+- `LLVM` must be installed on the machine. To install LLVM, run `sudo apt install llvm`
 
 Once the above requirements are satisfied, CoMEt can be setup by running the following commands from the project's root directory. 
 
@@ -43,6 +43,7 @@ Once the above requirements are satisfied, CoMEt can be setup by running the fol
 ./scripts/setupcomet.sh
 eval "$(conda shell.bash hook)"
 conda activate comet
+export COMET_HOME=$(pwd)
 ```
 
 This is a one-time installation procedure. When re-running CoMEt after installation, one should just activate the environment of the project by `conda activate comet` before running any experiments. 
@@ -55,7 +56,7 @@ To explain one input x86 assembly basic block using CoMEt, one needs to run the 
 An example invocation of CoMEt on one basic block is shown below. 
 
 ```
-python3 explainOneBasicBlock.py 'push rax; mov dword ptr [rbx], eax; add rax, rbx; cmp rbx, rdx' ithemal 
+python3 explainOneBasicBlock.py 'push rax; mov dword ptr [rbx], eax; add rax, rbx; cmp rbx, rdx' ithemal
 ```
 
 The currently supported cost models in CoMEt are Ithemal (cost model name for command: _ithemal_) and uiCA (cost model name for command: _uica_). If one wants to add another cost model to create CoMEt explanations for, then please follow the details in [the section on adding a new cost model](##adding-a-new-cost-model). 
