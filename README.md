@@ -43,7 +43,6 @@ Once the above requirements are satisfied, CoMEt can be setup by running the fol
 ./scripts/setupcomet.sh
 eval "$(conda shell.bash hook)"
 conda activate comet
-export COMET_HOME=$(pwd)
 ```
 
 This is a one-time installation procedure. When re-running CoMEt after installation, one should just activate the environment of the project by `conda activate comet` before running any experiments. 
@@ -99,9 +98,13 @@ The explanations take time in the order of minutes to be created on average, for
 
 
 ## Adding a new cost model
+If you want to get CoMEt's explanations for a cost model that is not yet supported in this implementation (we currently support Ithemal and uiCA only), you need to make minor changes in the file `models/testing_models.py`. This file contains the functions which invoke various cost models. In order to add your cost model, edit the template function provided in the aforementioned file. You will need a helper function which will return the prediction made by your cost model for one input basic block. Please refer to the template for more guidance. In case you face any trouble introducing a new cost, please create an issue and we will help you asap. 
 
 ## How to cite?
 Thank you for your interest in CoMEt. If you use this work in your own research, please cite our paper. Thanks!
 ```
 Chaudhary, Isha & Renda, Alex & Mendis, Charith & Singh, Gagandeep. (2023). CoMEt: x86 Cost Model Explanation Framework. 10.48550/arXiv.2302.06836. 
 ```
+
+## Contact
+For any comments or feedback, please contact [Isha](isha4@illinois.edu)
