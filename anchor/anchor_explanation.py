@@ -4,10 +4,9 @@ import io
 
 class AnchorExplanation:
     """Object returned by explainers"""
-    def __init__(self, type_, exp_map, as_html):
+    def __init__(self, type_, exp_map):
         self.type = type_
         self.exp_map = exp_map
-        self.as_html_fn = as_html
 
     def names(self, partial_index=None):
         """

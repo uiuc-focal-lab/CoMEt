@@ -21,9 +21,7 @@ def get_sample_fn(code, classifier_fn, predicate_type, prob, onepass=False, use_
     
     # sample_fn
     def sample_fn(present, num_samples, compute_labels=True, usebert=False):
-        # print(f'sampling a batch of {num_samples}')
         present_inst_tokens = {}  # this is just called present_inst_token. can take various forms
-        print("present", present)
         for p in present:
             if positions[p] in present_inst_tokens:
                 present_inst_tokens[positions[p]].append(token_list[p])
@@ -38,32 +36,21 @@ def get_sample_fn(code, classifier_fn, predicate_type, prob, onepass=False, use_
             data.append(diff)
             raw_data.append(raw)
             labels.append(lab)
-        # t1 = time.time()
         settings.seed += 1
-        # print()
-        # exit(0)
         t1 = time.time()
-        # print("started a pool for size: ", num_samples)
         pool = mp.Pool(mp.cpu_count()-1)
         results = pool.starmap_async(bb.perturb, [(present_inst_tokens, prob, n) for n in range(num_samples)]).get()
         pool.close()
         pool.join()
         results.sort(key=lambda a: a[2])
-        # print(f"Perturbation time for {num_samples} samples:", time.time()-t1)
         for res in results:
             data.append(res[0])
             raw_data.append(res[1])
-        # print("data: ", data)
-        # print("raw_data", raw_data)
-        # print("labels: ", labels)
-        # print("time taken: ", time.time()-t1)
-        # exit(0)
-        if compute_labels:  # here because the label computation will do the check if Ithemal can work on that input
+        if compute_labels: 
             labels = classifier_fn(raw_data, center)
         labels = np.array(labels)
         raw_data = np.array(raw_data).reshape(-1, 1)
 
         data = np.array(data, dtype=int)
         return raw_data, data, labels
-    # perturb each token of each instruction
     return token_list, positions, true_label, sample_fn

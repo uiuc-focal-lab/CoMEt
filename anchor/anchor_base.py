@@ -108,9 +108,6 @@ class AnchorBaseBeam(object):
             ut, lt = update_bounds(t)
             B = ub[ut] - lb[lt]
         sorted_means = np.argsort(means)
-        print("LUCB converged precisions: ")
-        print("sorted means:", sorted_means)
-        print("mean values:", means)
         return sorted_means[-top_n:]
 
     @staticmethod
@@ -263,7 +260,6 @@ class AnchorBaseBeam(object):
         anchor = {'feature': [], 'mean': [], 'precision': [],
                   'coverage': [], 'examples': [], 'all_precision': 0}
         coverage_samples = 500
-        print("number of coverage samples:", coverage_samples)
         _, coverage_data, _ = sample_fn([], coverage_samples, compute_labels=False)
         raw_data, data, labels = sample_fn([], max(1, min_samples_start))
         mean = labels.mean()
