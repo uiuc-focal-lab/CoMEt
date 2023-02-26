@@ -20,7 +20,8 @@ conda env create -f scripts/environment.yml
 # activate the conda environment
 eval "$(conda shell.bash hook)"
 conda activate comet
-
+conda env config vars set COMET_HOME=$(pwd)
+conda activate comet
 ./scripts/setup.sh
 
 sudo chown -R root:root "${DYNAMORIO_HOME}"
@@ -32,32 +33,4 @@ if [ -d "${BUILD_DIR}" ]; then
     rm -rf "${BUILD_DIR}"
 fi
 ./models/Ithemal/data_collection/build_dynamorio.sh
-
-echo Installing LLVM if not already present
-#sudo apt install llvm
-# code from Ithemal's official repo
-#cd utils/
-#if [ ! -d "llvm" ]; then
-#    echo "Downloading LLVM..."
-#    git clone https://github.com/llvm-mirror/llvm.git llvm
-#else
-#    echo "LLVM already downloaded..."
-#fi
-
-#cd llvm
-#git pull
-#cd ..
-#
-#if [ ! -d "llvm-build/bin/llvm-mca" ]; then
-#    echo "Building llvm-mca"
-#    mkdir -p llvm-build
-#    cd llvm-build
-#    cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD=X86 ../llvm
-#    make -j24 llvm-mca
-#else
-#    echo "llvm-mca already built"
-#fi
-
-#cd $cur
-
 

@@ -124,4 +124,4 @@ class Ithemal(nn.Module):
         return raw_instrs
 
 
-Ithemal_gpu_model = Ithemal('models/Ithemal/ithemal_trained_against_uica')
+Ithemal_model = Ithemal('models/Ithemal/ithemal_trained_against_uica')

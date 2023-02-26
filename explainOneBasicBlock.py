@@ -31,7 +31,7 @@ def main():
     code = preprocess_my_code(code_text)
 
     if args.cost_model == 'ithemal':
-        my_model = testing_ithemal_gpu
+        my_model = testing_ithemal
         print("Testing cost model Ithemal")
     elif args.cost_model == 'uica':
         my_model = testing_uica
@@ -42,7 +42,7 @@ def main():
     explainer = anchor_code.AnchorCode()
     performance_prediction = my_model(code)[0]
     print()
-    print('Throughput Prediction for input basic block made by model {}: {}'.format(args.cost_model, performance_prediction))
+    print('Throughput Prediction for input basic block made by model {}: {:.1f}'.format(args.cost_model, performance_prediction))
 
     exp = explainer.explain_instance(code, my_model, predicate_type, threshold=args.threshold, perturbation_probability=args.probability)
     print()
