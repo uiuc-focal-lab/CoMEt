@@ -107,4 +107,4 @@ Chaudhary, Isha & Renda, Alex & Mendis, Charith & Singh, Gagandeep. (2023). CoME
 ```
 
 ## Contact
-For any comments or feedback, please contact [Isha](isha4@illinois.edu)
+For any comments or feedback, please contact [Isha Chaudhary](isha4@illinois.edu)
