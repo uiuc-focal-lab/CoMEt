@@ -24,5 +24,6 @@ class AnchorCode(object):
         exp['instance'] = code
         exp['prediction'] = true_label
         explanation = anchor_explanation.AnchorExplanation('text', exp)
-        print(f"Total time taken for predicate type {predicate_type}:", time.time()-t1)
+        print()
+        print(f"Total time taken for creating explanations with {predicate_type} predicate:", time.time()-t1)
         return explanation

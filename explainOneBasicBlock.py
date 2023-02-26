@@ -16,6 +16,7 @@ def main():
     parser.add_argument("-precision_threshold", type=float, help='precision threshold for the Anchors algorithm (default=0.82)', default=0.82)
     parser.add_argument("-perturbation_probability", type=float, help='probability parameter in perturbation model (default=0.5)', default=0.5)
     parser.add_argument('-token', action='store_true', help='give explanations with token-level predicates')
+    parser.add_argument('-verbose', action='store_true', help='get verbose output if -verbose is included')
     args = parser.parse_args()
 
     predicate_type = 'instruction'
@@ -23,7 +24,8 @@ def main():
         predicate_type = 'token'
     settings.init()
     code_text = args.code
-    print("The basic block being explained is:\n{}".format(code_text))
+    print()
+    print("The basic block being explained is:\n{}".format(code_text.replace('; ', '\n')))
 
     # preprocess code to send to explain
     code = preprocess_my_code(code_text)
@@ -39,24 +41,27 @@ def main():
 
     explainer = anchor_code.AnchorCode()
     performance_prediction = my_model(code)[0]
+    print()
     print('Throughput Prediction for input basic block made by model {}: {}'.format(args.cost_model, performance_prediction))
 
     exp = explainer.explain_instance(code, my_model, predicate_type, threshold=args.precision_threshold, perturbation_probability=args.perturbation_probability)
+    print()
     print('='*100)
     print("Predicate type: ", predicate_type)
     print('Anchor: %s' % (' AND '.join(exp.names())))
     print('Precision: %.2f' % exp.precision())
     print('Coverage: %.2f' % exp.coverage())
     print('='*100)
-    print('Examples where anchor applies and model predicts close to the original throughput prediction:')
-    print()
-    print('\n\n'.join([x[0] for x in exp.examples(only_same_prediction=True)]))
-    print('='*100)
-    print()
-    print('Examples where anchor applies and model predicts far from the original throughput prediction:')
-    print()
-    print('\n\n'.join([x[0] for x in exp.examples(partial_index=None, only_different_prediction=True)]))
-    print('='*100)
+    if args.verbose:
+        print('Examples where anchor applies and model predicts close to the original throughput prediction:')
+        print()
+        print('\n\n'.join([x[0] for x in exp.examples(only_same_prediction=True)]))
+        print('='*100)
+        print()
+        print('Examples where anchor applies and model predicts far from the original throughput prediction:')
+        print()
+        print('\n\n'.join([x[0] for x in exp.examples(partial_index=None, only_different_prediction=True)]))
+        print('='*100)
 
 
 if __name__ == '__main__':
