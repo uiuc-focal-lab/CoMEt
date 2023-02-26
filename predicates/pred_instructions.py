@@ -4,7 +4,7 @@ class Instructions:
             self.token_list.append(f'inst_{i}')
             self.positions.append(i)
 
-    def perturb_inst(self, present_inst_tokens, p, n, use_stoke=False):
+    def perturb_inst(self, present_inst_tokens, p, n):
         perturbed_asm = self.original_asm
         my_seed = n
         my_seed += 10000
@@ -15,7 +15,7 @@ class Instructions:
             perturbed_inst = inst.get_original_asm()
             changes_list = []
             if len(present) == 0:  # this instruction can be perturbed as its token is not present in present (which is why that is empty)
-                perturbed_inst, changes_list = inst.perturb(present, p, n=(my_seed*(i+1))%10001, use_stoke=use_stoke)
+                perturbed_inst, changes_list = inst.perturb(present, p, n=(my_seed*(i+1))%10001)
             # print(perturbed_inst)
             perturbed_asm_insts.append(perturbed_inst)
             changes = 1
