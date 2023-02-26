@@ -26,7 +26,7 @@ def main():
     code_text = args.code
     print()
     print("The basic block being explained is:\n{}".format(code_text.replace('; ', '\n')))
-
+    print()
     # preprocess code to send to explain
     code = preprocess_my_code(code_text)
 
@@ -48,7 +48,7 @@ def main():
     print()
     print('='*100)
     print("Predicate type: ", predicate_type)
-    print('Anchor: %s' % (' AND '.join(exp.names())))
+    print("CoMEt's explanation consists of predicates corresponding to: %s" % (' AND '.join(exp.names())))
     print('Precision: %.2f' % exp.precision())
     print('Coverage: %.2f' % exp.coverage())
     print('='*100)

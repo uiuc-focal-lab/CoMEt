@@ -15,8 +15,10 @@ class AnchorCode(object):
             raise Exception("Unrecognized predicate type!")
         words, positions, true_label, sample_fn = get_sample_fn(
             code, classifier_fn, predicate_type, perturbation_probability, onepass=onepass, use_proba=use_proba)  # predicate type sends the type of predicate for sampling function
-        print("All predicates to explain with are characterized by: ", words)  # TODO: make these words actual elements of the basic block
+        print(f"All predicates to explain with are characterized by {predicate_type}: ", words)  # TODO: make these words actual elements of the basic block
         t1 = time.time()
+        print()
+        print("Creating CoMEt's explanations for the input basic block")
         exp = anchor_base.AnchorBaseBeam.anchor_beam(sample_fn, delta=delta_beta, epsilon=epsilon, batch_size=batch_size, desired_confidence=threshold,
                                                      stop_on_first=False, coverage_samples=10000, min_samples_start=batch_size, **kwargs)  # changed number of coverage samples from 1 to 2000
         exp['names'] = [words[x] for x in exp['feature']]
