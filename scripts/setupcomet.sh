@@ -21,6 +21,13 @@ conda activate comet
 
 ./scripts/setup.sh
 
+sudo chown -R root:root "${DYNAMORIO_HOME}"
+sudo find "${DYNAMORIO_HOME}" -type d -exec chmod 755 {} \;
+sudo find "${DYNAMORIO_HOME}" -type f -exec chmod 644 {} \;
+
+BUILD_DIR="./models/Ithemal/data_collection/build"
+if [ -d "${BUILD_DIR}" ]; then
+    rm -rf "${BUILD_DIR}"
+fi
 ./models/Ithemal/data_collection/build_dynamorio.sh
 
-echo All set to run CoMEt! Have fun!
