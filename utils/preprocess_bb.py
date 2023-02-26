@@ -23,7 +23,7 @@ def preprocess_my_code(code):
     except:
         block_hex = get_hex_of_code_att(code)
     # disassemble the block_hex using disasm.py
-    asm_code = subprocess.check_output(['python3', 'disasm.py', block_hex, '--output-intel-syntax'], universal_newlines=True)
+    asm_code = subprocess.check_output(['python3', 'utils/disasm.py', block_hex, '--output-intel-syntax'], universal_newlines=True)
 
     # remove tabs
     asm_code = asm_code.replace('\t', ' ')
