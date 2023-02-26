@@ -35,7 +35,7 @@ The following minimal requirements exist for setting up CoMEt.
 - Ubuntu OS (the experiments in the paper were conducted on Ubuntu v22.04, so it is recommended to work with a recent distribution of Ubuntu)
 - `sudo` access on the machine on which experiments are conducted
 - `python, pip, miniconda, cmake` must be installed on the machine
-- `[LLVM](https://llvm.org/)` must be installed on the machine. To install LLVM, run `sudo apt install llvm`
+- [LLVM](https://llvm.org/) must be installed on the machine. To install `LLVM`, run `sudo apt install llvm`
 
 Once the above requirements are satisfied, CoMEt can be setup by running the following commands from the project's root directory. 
 
