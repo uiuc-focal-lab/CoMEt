@@ -13,7 +13,7 @@ def exp_normalize(x):
     y = np.exp(x - b)
     return y / y.sum()
 
-def get_sample_fn(code, classifier_fn, predicate_type, prob, onepass=False, use_proba=False, use_stoke=False):
+def get_sample_fn(code, classifier_fn, predicate_type, prob, onepass=False, use_proba=False):
     true_label = 1  # always within the eps ball
     bb = BasicBlock(code, predicate_type, classifier_fn)
     center = bb.get_original_pred()
@@ -47,7 +47,7 @@ def get_sample_fn(code, classifier_fn, predicate_type, prob, onepass=False, use_
         t1 = time.time()
         # print("started a pool for size: ", num_samples)
         pool = mp.Pool(mp.cpu_count()-1)
-        results = pool.starmap_async(bb.perturb, [(present_inst_tokens, prob, n, use_stoke) for n in range(num_samples)]).get()
+        results = pool.starmap_async(bb.perturb, [(present_inst_tokens, prob, n) for n in range(num_samples)]).get()
         pool.close()
         pool.join()
         results.sort(key=lambda a: a[2])
