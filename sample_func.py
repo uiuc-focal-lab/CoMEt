@@ -18,8 +18,8 @@ def get_sample_fn(code, classifier_fn, predicate_type, prob, onepass=False, use_
     bb = BasicBlock(code, predicate_type, classifier_fn)
     center = bb.get_original_pred()
     token_list, positions = bb.get_tokens()
-    df_samples = pd.DataFrame(columns=['asm', 'data', 'label', 'center', 'present'])
-    df_samples.to_csv('data/scratch/samples.csv', index=False)
+    #df_samples = pd.DataFrame(columns=['asm', 'data', 'label', 'center', 'present'])
+    #df_samples.to_csv('data/scratch/samples.csv', index=False)
     # sample_fn
 
     def sample_fn(present, num_samples, compute_labels=True, usebert=False):
