@@ -61,6 +61,7 @@ python3 explainOneBasicBlock.py 'push rax; mov dword ptr [rbx], eax; add rax, rb
 
 The currently supported cost models in CoMEt are Ithemal (cost model name for command: _ithemal_) and uiCA (cost model name for command: _uica_). If one wants to add another cost model to create CoMEt explanations for, then please follow the details in [the section on adding a new cost model](##adding-a-new-cost-model). 
 The default cost model for which CoMEt generates explanations is _Ithemal_. 
+The explanations take time in the order of minutes to be created on average, for basic blocks with number of instructions between 4 and 10. 
 
 Optional arguments to above command:
 - `-token`: to explain the throughput predictions of the cost model at the token-level of the input basic block.
