@@ -18,10 +18,8 @@ def get_sample_fn(code, classifier_fn, predicate_type, prob, onepass=False, use_
     bb = BasicBlock(code, predicate_type, classifier_fn)
     center = bb.get_original_pred()
     token_list, positions = bb.get_tokens()
-    #df_samples = pd.DataFrame(columns=['asm', 'data', 'label', 'center', 'present'])
-    #df_samples.to_csv('data/scratch/samples.csv', index=False)
+    
     # sample_fn
-
     def sample_fn(present, num_samples, compute_labels=True, usebert=False):
         # print(f'sampling a batch of {num_samples}')
         present_inst_tokens = {}  # this is just called present_inst_token. can take various forms
@@ -62,8 +60,6 @@ def get_sample_fn(code, classifier_fn, predicate_type, prob, onepass=False, use_
         # exit(0)
         if compute_labels:  # here because the label computation will do the check if Ithemal can work on that input
             labels = classifier_fn(raw_data, center)
-            df_now = pd.DataFrame(zip(raw_data, data, labels, [center]*len(labels), [present]*len(labels)), columns=['asm', 'data', 'label', 'center', 'present'])
-            df_now.to_csv('data/scratch/samples.csv', mode='a', index=False, header=False)
         labels = np.array(labels)
         raw_data = np.array(raw_data).reshape(-1, 1)
 
