@@ -38,7 +38,7 @@ def main():
         raise("model type not recognized!")
 
     explainer = anchor_code.AnchorCode()
-    performance_prediction = my_model(code)
+    performance_prediction = my_model(code)[0]
     print('Throughput Prediction for input basic block made by model {}: {}'.format(args.cost_model, performance_prediction))
 
     exp = explainer.explain_instance(code, my_model, predicate_type, threshold=args.precision_threshold, perturbation_probability=args.perturbation_probability)

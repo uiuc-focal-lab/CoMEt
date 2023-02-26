@@ -42,7 +42,7 @@ def preprocess_my_code(code):
     asm_code = '; '.join(insts)
 
     # add the .intel_syntax noprefix directive to the new code
-    asm_code = '.intel_syntax noprefix; ' + asm_code
+    asm_code = '.intel_syntax noprefix; ' + asm_code + '\n'
 
     # return the code in the transformed state
     return asm_code
