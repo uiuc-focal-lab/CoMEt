@@ -51,7 +51,12 @@ This is a one-time installation procedure. When re-running CoMEt after installat
 ## Creating CoMEt's explanations for one basic block
 To explain one input x86 assembly basic block using CoMEt, one needs to run the following command. 
 
-```python3 explainOneBasicBlock.py <your code> <cost model> <threshold (optional)> <probability (optional)>```
+```python3 explainOneBasicBlock.py <your code> <cost model>```
+
+Optional arguments to above command:
+- `-token`: to explain the throughput predictions of the cost model at the token-level of the input basic block.
+- `-threshold`: to specify custom precision threshold $(1-\delta)$ for the Anchors' algorithm (default = 0.82)
+- `-probability`: to specify custom probability parameter for the probability mass function in the perturbation model (default = 0.5)
 
 An example invocation of CoMEt on one basic block is shown below. 
 
@@ -87,12 +92,8 @@ In the above output, the `inst_<i>` means the instruction indexed by `i`, with 0
 
 The currently supported cost models in CoMEt are Ithemal (cost model name for command: _ithemal_) and uiCA (cost model name for command: _uica_). If one wants to add another cost model to create CoMEt explanations for, then please follow the details in [the section on adding a new cost model](##adding-a-new-cost-model). 
 The default cost model for which CoMEt generates explanations is _Ithemal_. 
-The explanations take time in the order of minutes to be created on average, for basic blocks with number of instructions between 4 and 10. 
 
-Optional arguments to above command:
-- `-token`: to explain the throughput predictions of the cost model at the token-level of the input basic block.
-- `threshold <x>`: to specify custom precision threshold $(1-\delta)$ for the Anchors' algorithm (default = 0.82)
-- `probability <p>`: to specify custom probability parameter for the probability mass function in the perturbation model (default = 0.5)
+The explanations take time in the order of minutes to be created on average, for basic blocks with number of instructions between 4 and 10. 
 
 ## Reproducing the experiments in the paper.
 
