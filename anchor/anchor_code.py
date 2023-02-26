@@ -23,6 +23,6 @@ class AnchorCode(object):
         exp['positions'] = [positions[x] for x in exp['feature']]
         exp['instance'] = code
         exp['prediction'] = true_label
-        explanation = anchor_explanation.AnchorExplanation('text', exp, self.as_html)
+        explanation = anchor_explanation.AnchorExplanation('text', exp)
         print(f"Total time taken for predicate type {predicate_type}:", time.time()-t1)
         return explanation
