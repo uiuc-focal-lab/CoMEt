@@ -95,7 +95,7 @@ The default cost model for which CoMEt generates explanations is _Ithemal_.
 
 The explanations take time in the order of minutes to be created on average, for basic blocks with number of instructions between 4 and 10. 
 
-## Reproducing the experiments in the paper.
+<!-- ## Reproducing the experiments in the paper. -->
 
 
 ## Adding a new cost model
