@@ -56,6 +56,7 @@ Optional arguments to above command:
 - `-token`: to explain the throughput predictions of the cost model at the token-level of the input basic block.
 - `-threshold`: to specify custom precision threshold $(1-\delta)$ for the Anchors' algorithm (default = 0.82)
 - `-probability`: to specify custom probability parameter for the probability mass function in the perturbation model (default = 0.5)
+- `-verbose`: to get more detailed output.
 
 An example invocation of CoMEt on one basic block is shown below. 
 
