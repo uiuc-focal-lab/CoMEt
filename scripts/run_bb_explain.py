@@ -2,6 +2,8 @@ import subprocess
 import pandas as pd
 import sys
 import os
+import shutil
+# copy the template folder and paste it in test_data folder
 sys.path.append('data/port_explanations_only_deletion/')
 from type_counts_in_dir import *
 
