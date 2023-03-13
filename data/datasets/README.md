@@ -7,11 +7,13 @@ Kindly note that CoMEt is in no way restricted to work with only this set of bas
 The explanation dataset used in our experiments shown in our paper is a subset of these datasets. 
 
 The BHive dataset categorizes its basic blocks into 6 categories.
-- Load
-- Store
-- Load/Store
-- Scalar
-- Vector
-- Scalar/Vector
+- Load (Ld)
+- Store (St)
+- Load/Store (Ld/St)
+- Scalar (Sc)
+- Vector (vec)
+- Scalar/Vector (Sc/Vec)
 
 These categories are based on the main functionality of the basic block. We have tried to maintain the representation of all categories of basic blocks in the dataset for which explanations were created. 
+
+The backend dataset does not contain any Ld/St type of basic blocks which have number of instructions between 4 and 10. Hence, we have not been able to account for them in our explanations. 
