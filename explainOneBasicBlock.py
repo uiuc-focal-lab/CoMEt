@@ -12,7 +12,7 @@ from testing_models import *
 def main():
     parser = argparse.ArgumentParser(description='Explain the throughput prediction made by given cost model for one basic block')
     parser.add_argument("code", type=str, help='code for input x86 assembly basic block')
-    parser.add_argument("cost_model", type=str, help='cost model whose throughput predictions are to be explained')
+    parser.add_argument("cost_model", type=str, choices=['ithemal', 'uica'], help='cost model whose throughput predictions are to be explained')
     parser.add_argument("-threshold", type=float, help='precision threshold for the Anchors algorithm (default=0.82)', default=0.82)
     parser.add_argument("-probability", type=float, help='probability parameter in perturbation model (default=0.5)', default=0.5)
     parser.add_argument('-token', action='store_true', help='give explanations with token-level predicates')
