@@ -1,9 +1,9 @@
 import subprocess
 import pandas as pd
 import sys
-import os
-import shutil
-# copy the template folder and paste it in test_data folder
+import argparse
+# add argument for frontend or backend block explanation dataset to be created
+
 sys.path.append('data/port_explanations_only_deletion/')
 from type_counts_in_dir import *
 
