@@ -1,9 +1,10 @@
 import subprocess
 import pandas as pd
 import sys
+import os
 import argparse
-sys.path.append('data/test_data/backend_explanation_files/')  # adding path for backend explanation folder
-sys.path.append('data/test_data/frontend_explanation_files/')  # adding path for frontend explanation folder
+# sys.path.append('data/test_data/backend_explanation_files/')  # adding path for backend explanation folder
+# sys.path.append('data/test_data/frontend_explanation_files/')  # adding path for frontend explanation folder
 
 
 def run_expts(BASE_FOLDER, explanation_blocks_path):
@@ -17,15 +18,13 @@ def run_expts(BASE_FOLDER, explanation_blocks_path):
         try:
             print("Trying block", i)
             print("code:", code)
-            print("category:", category)
             my_output_ithemal = subprocess.check_output(['python3', 'explainOneBasicBlock.py', code, 'instruction', 'ithemal'], universal_newlines=True)
             print('Ithemal done')
             my_output_uica = subprocess.check_output(['python3', 'explainOneBasicBlock.py', code, 'instruction', 'uica'], universal_newlines=True)
             print('uica done')
-            category_folder = category.replace('/', '')
-            with open(f'{BASE_FOLDER}/Ithemal/{category_folder}/{i}.txt', 'w') as f:
+            with open(f'{BASE_FOLDER}/Ithemal/{i}.txt', 'w') as f:
                 f.write(my_output_ithemal)
-            with open(f'{BASE_FOLDER}/uica/{category_folder}/{i}.txt', 'w') as f:
+            with open(f'{BASE_FOLDER}/uica/{i}.txt', 'w') as f:
                 f.write(my_output_uica)
             type_count[category] += 1
             print(type_count)
@@ -55,11 +54,22 @@ def main():
         backend = True
         frontend = True
 
+    if not os.path.exists('data/test_data/'):
+        os.makedirs('data/test_data/')
+
     if backend:
         print('Computing explanations for backend bound blocks')
+        if not os.path.exists('data/test_data/backend_explanation_files/'):
+            os.makedirs('data/test_data/backend_explanation_files/')
+            os.makedirs('data/test_data/backend_explanation_files/Ithemal')
+            os.makedirs('data/test_data/backend_explanation_files/uica')
         run_expts('data/test_data/backend_explanation_files/', 'data/datasets/backend_bound_blocks_dataset.csv')
     if frontend:
         print('Computing explanations for frontend bound blocks')
+        if not os.path.exists('data/test_data/frontend_explanation_files/'):
+            os.makedirs('data/test_data/frontend_explanation_files/')
+            os.makedirs('data/test_data/frontend_explanation_files/Ithemal')
+            os.makedirs('data/test_data/frontend_explanation_files/uica')
         run_expts('data/test_data/frontend_explanation_files/', 'data/datasets/frontend_bound_blocks_dataset.csv')
 
 

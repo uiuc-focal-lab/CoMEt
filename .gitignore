@@ -5,3 +5,4 @@ instrData/**
 models/Ithemal/data_collection/build/
 **/*.swp
 data/scratch/**
+data/test_data/**
