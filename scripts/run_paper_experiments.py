@@ -1,10 +1,7 @@
 import subprocess
 import pandas as pd
-import sys
 import os
 import argparse
-# sys.path.append('data/test_data/backend_explanation_files/')  # adding path for backend explanation folder
-# sys.path.append('data/test_data/frontend_explanation_files/')  # adding path for frontend explanation folder
 
 
 def run_expts(BASE_FOLDER, explanation_blocks_path):
